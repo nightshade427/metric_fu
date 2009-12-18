@@ -32,7 +32,7 @@ module MetricFu
     def emit
       begin
         FileUtils.rm_rf(MetricFu::Rcov.metric_directory, :verbose => false)
-        Dir.mkdir(MetricFu::Rcov.metric_directory)
+        FileUtils.mkdir_p(MetricFu::Rcov.metric_directory, :verbose => false)
         test_files = FileList[*MetricFu.rcov[:test_files]].join(' ')
         rcov_opts = MetricFu.rcov[:rcov_opts].join(' ')
         output = ">> #{MetricFu::Rcov.metric_directory}/rcov.txt"
